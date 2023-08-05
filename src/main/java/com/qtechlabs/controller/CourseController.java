@@ -23,7 +23,7 @@ import com.qtechlabs.service.CourseService;
 
 /**
  * 
- * @author aamirqureshi
+ * @author faizan khan
  *
  */
 @RestController
