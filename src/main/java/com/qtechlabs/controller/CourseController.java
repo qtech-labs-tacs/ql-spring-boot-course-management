@@ -20,6 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qtechlabs.dto.CourseDTO;
 import com.qtechlabs.service.CourseService;
 
+
+/**
+ * 
+ * @author aamirqureshi
+ *
+ */
 @RestController
 @RequestMapping("/api/v1/course")
 public class CourseController {
