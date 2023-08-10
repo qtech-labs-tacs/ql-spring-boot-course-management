@@ -20,6 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qtechlabs.dto.CourseDTO;
 import com.qtechlabs.service.CourseService;
 
+
+/**
+ * 
+ * @author faizan khan
+ *
+ */
 @RestController
 @RequestMapping("/api/v1/course")
 public class CourseController {
@@ -36,12 +42,23 @@ public class CourseController {
 		return new ResponseEntity<CourseDTO>(createCourse, HttpStatus.CREATED);
 	}
 
+	
+	
+	
+	
 	@GetMapping("/{courseId}")
 	public ResponseEntity<CourseDTO> getCourse(@PathVariable Long courseId) {
 		log.info("API");
 		CourseDTO course = courseService.getCourse(courseId);
 		return new ResponseEntity<CourseDTO>(course, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/")
 	public ResponseEntity<List<CourseDTO>> getAllCourses() {
@@ -50,12 +67,22 @@ public class CourseController {
 		return new ResponseEntity<>(allCourse, HttpStatus.OK);
 	}
 
+	
+	
+	
+	
+	
 	@PutMapping("{courseId}")
 	public ResponseEntity<CourseDTO> updateCourse(@PathVariable Long courseId, @RequestBody CourseDTO courseDTO) {
 		log.info("API");
 		CourseDTO updateCourse = courseService.updateCourse(courseId, courseDTO);
 		return new ResponseEntity<CourseDTO>(updateCourse, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
 
 	@DeleteMapping("/{courseId}")
 	public ResponseEntity<CourseDTO> deleteCourse(@PathVariable Long courseId) {
