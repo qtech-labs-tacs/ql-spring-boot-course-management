@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qtechlabs.dto.CourseDTO;
 import com.qtechlabs.service.CourseService;
 
-
 /**
  * 
  * @author faizan khan
@@ -35,31 +34,36 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 
+	
+	
+	//-->  API 1  -- CREATE
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO courseDTO) {
+	public ResponseEntity<String> createCourse(@RequestBody CourseDTO courseDTO) {
 		log.info("Create API");
-		CourseDTO createCourse = courseService.createCourse(courseDTO);
-		return new ResponseEntity<CourseDTO>(createCourse, HttpStatus.CREATED);
+		courseService.createCourse(courseDTO);
+		
+		return new ResponseEntity<>("Course Created", HttpStatus.CREATED);
 	}
-
 	
 	
 	
 	
+	//-->  API 2 -- RETRIEVE
 	@GetMapping("/{courseId}")
-	public ResponseEntity<CourseDTO> getCourse(@PathVariable Long courseId) {
+	public ResponseEntity<?> getCourse(@PathVariable Long courseId) {
 		log.info("API");
-		CourseDTO course = courseService.getCourse(courseId);
-		return new ResponseEntity<CourseDTO>(course, HttpStatus.OK);
-	}
-	
-	
-	
-	
-	
-	
-	
 
+		CourseDTO course = courseService.getCourse(courseId);
+		if (course != null) {
+			return new ResponseEntity<CourseDTO>(course, HttpStatus.CREATED);
+		}
+		return new ResponseEntity<>("No Record Found For This Course Id", HttpStatus.CREATED);
+	}
+
+	
+	
+	
+	//-->  API 3 -- RETRIEVE
 	@GetMapping("/")
 	public ResponseEntity<List<CourseDTO>> getAllCourses() {
 		log.info("API");
@@ -69,26 +73,27 @@ public class CourseController {
 
 	
 	
-	
-	
-	
-	@PutMapping("{courseId}")
-	public ResponseEntity<CourseDTO> updateCourse(@PathVariable Long courseId, @RequestBody CourseDTO courseDTO) {
+	//--> API 4 -- UPDATE
+	@PutMapping("/{courseId}")
+	public ResponseEntity<String> updateCourse(@PathVariable Long courseId, @RequestBody CourseDTO courseDTO) {
 		log.info("API");
-		CourseDTO updateCourse = courseService.updateCourse(courseId, courseDTO);
-		return new ResponseEntity<CourseDTO>(updateCourse, HttpStatus.OK);
+		courseService.updateCourse(courseId, courseDTO);
+		return new ResponseEntity<>("Course has been updated", HttpStatus.OK);
 	}
-	
 	
 	
 	
 	
 
+	//-->  API 5 -- DELETE
 	@DeleteMapping("/{courseId}")
-	public ResponseEntity<CourseDTO> deleteCourse(@PathVariable Long courseId) {
+	public ResponseEntity<String> deleteCourse(@PathVariable Long courseId) {
 		log.info("API");
 		courseService.deleteCourse(courseId);
-		return null;
+		return new ResponseEntity<String>("Course has been deleted", HttpStatus.OK);
 	}
+	
+	
+	
 
 }

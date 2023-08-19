@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class CourseEntity {
+public class Course {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,11 +24,11 @@ public class CourseEntity {
 
 	private String instructor;
 
-	public CourseEntity() {
+	public Course() {
 
 	}
 
-	public CourseEntity(Long courseId, String courseName, String courseDescription, int duration, long fees,
+	public Course(Long courseId, String courseName, String courseDescription, int duration, long fees,
 			String instructor) {
 		super();
 		this.courseId = courseId;

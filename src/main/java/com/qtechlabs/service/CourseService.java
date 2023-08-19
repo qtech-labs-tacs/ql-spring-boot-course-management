@@ -6,10 +6,10 @@ import com.qtechlabs.dto.CourseDTO;
 
 public interface CourseService {
 
-	public CourseDTO createCourse(CourseDTO courseDTO);
+	public boolean createCourse(CourseDTO courseDTO);
 	public CourseDTO getCourse(Long courseId);
 	public List<CourseDTO> getAllCourse();
-	public CourseDTO deleteCourse(Long courseId);
-	public CourseDTO updateCourse(Long courseId, CourseDTO courseDTO);
+	public boolean deleteCourse(Long courseId);
+	public boolean updateCourse(Long courseId, CourseDTO courseDTO);
 
 }
